@@ -1,6 +1,7 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import './App.css'
+import EventList from './EventList'
+import events from './actuLanEvents'
 
 function App () {
   return (
@@ -14,30 +15,8 @@ function App () {
         <div class="map-container">
           lol
         </div>
-        <div class="event-list">
-          <ul>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>item></li>
-            <li>last item></li>
-          </ul>
+        <div class="event-list-container">
+          <EventList events={events}/>
         </div>
       </main>
     </div>
