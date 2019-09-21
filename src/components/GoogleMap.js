@@ -3,6 +3,13 @@ import './GoogleMap.scss'
 
 const GOOGLE_MAP_API_KEY = 'AIzaSyBap_M_mBL76MdmgdouS9l3vBwMxEkXbcs'
 
+const FRANCE_BOUNDS = {
+  north: 52,
+  south: 42,
+  west: -5,
+  east: 10
+}
+
 class GoogleMap extends React.Component {
   constructor (props) {
     super(props)
@@ -22,11 +29,17 @@ class GoogleMap extends React.Component {
   createGoogleMap () {
     // eslint-disable-next-line no-new
     new window.google.maps.Map(this.googleMapRef.current, {
-      zoom: 16,
+      zoom: 6,
       center: {
-        lat: 43.642567,
-        lng: -79.387054
+        lat: 47.413135,
+        lng: 2.856981
       },
+      restriction: {
+        latLngBounds: FRANCE_BOUNDS,
+        strictBounds: false
+      },
+      disableDoubleClickZoom: true,
+      scrollwheel: false,
       disableDefaultUI: true
     })
   }
