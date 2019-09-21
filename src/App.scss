@@ -1,7 +1,6 @@
 @import 'variables';
 @import '~bulma/bulma';
 
-
 html {
   /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -38,11 +37,6 @@ main {
   flex-grow: 1;
   display: flex;
   overflow: auto;
-}
-
-.map-container {
-  background-color: green;
-  flex: 2;
 }
 
 .event-list-container {
