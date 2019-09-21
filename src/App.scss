@@ -1,3 +1,7 @@
+@import 'variables';
+@import '~bulma/bulma';
+
+
 html {
   /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -23,14 +27,11 @@ body {
   flex-direction: column;
 }
 
-header h1 {
- color: var(--primary-color);
- margin-left: 1em;
+.navbar {
+  border-bottom: 2px solid $primary;
 }
-
-header {
-  background-color: white;
-  border-bottom: 2px solid var(--primary-color);
+.navbar-brand {
+  margin-left: 1em;
 }
 
 main {
@@ -41,13 +42,13 @@ main {
 
 .map-container {
   background-color: green;
-  height: 100%;
-  flex: 1;
+  flex: 2;
 }
 
 .event-list-container {
   flex: 1;
   overflow: scroll;
+  padding-top: 24px;
 }
 
 li {
