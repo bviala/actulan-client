@@ -14,6 +14,9 @@ class GoogleMap extends React.Component {
   constructor (props) {
     super(props)
     this.googleMapRef = React.createRef()
+    this.state = {
+      eventMarkers: []
+    }
   }
 
   componentDidMount () {
@@ -48,7 +51,7 @@ class GoogleMap extends React.Component {
 
   addMarkers () {
     console.log(`Adding ${this.props.events.length} events to the map`)
-    const markers = []
+    const eventMarkers = []
     this.props.events.forEach(event => {
       if (event.location && event.location.lat && event.location.lng) {
         const latLng = new window.google.maps.LatLng(event.location.lat, event.location.lng)
@@ -56,10 +59,15 @@ class GoogleMap extends React.Component {
           position: latLng,
           map: this.googleMap
         })
-        markers.push(marker)
+        eventMarkers.push({
+          eventId: event.id,
+          marker: marker
+        })
       }
     })
-    return markers
+    this.setState({
+      eventMarkers
+    })
   }
 
   componentDidUpdate (prevProps) {
@@ -67,6 +75,15 @@ class GoogleMap extends React.Component {
     if (window.google) {
       if (prevProps.events !== this.props.events) {
         this.addMarkers()
+      }
+      if (prevProps.hoveredEvent !== this.props.hoveredEvent) {
+        this.state.eventMarkers.forEach(eventMarker => {
+          if (eventMarker.eventId === this.props.hoveredEvent) {
+            eventMarker.marker.setAnimation(window.google.maps.Animation.BOUNCE)
+          } else {
+            eventMarker.marker.setAnimation(null)
+          }
+        })
       }
     }
   }

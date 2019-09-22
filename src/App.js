@@ -7,12 +7,17 @@ import { getEvents } from './api/events'
 class App extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { events: [] }
+    this.state = {
+      events: [],
+      hoveredEvent: null
+    }
     this.onHoverChange = this.onHoverChange.bind(this)
   }
 
   onHoverChange (id) {
-    console.log(id)
+    this.setState({
+      hoveredEvent: id
+    })
   }
 
   componentDidMount () {
@@ -32,9 +37,13 @@ class App extends React.Component {
           </h1>
         </header>
         <main>
-          <GoogleMap events={this.state.events}/>
+          <GoogleMap
+            events={this.state.events}
+            hoveredEvent={this.state.hoveredEvent}/>
           <div className="event-list-container section">
-            <EventList events={this.state.events} onHoverChange={this.onHoverChange}/>
+            <EventList
+              events={this.state.events}
+              onHoverChange={this.onHoverChange}/>
           </div>
         </main>
       </div>
