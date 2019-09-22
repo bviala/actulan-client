@@ -28,7 +28,7 @@ class GoogleMap extends React.Component {
 
   createGoogleMap () {
     // eslint-disable-next-line no-new
-    new window.google.maps.Map(this.googleMapRef.current, {
+    const googleMap = new window.google.maps.Map(this.googleMapRef.current, {
       zoom: 6,
       center: {
         lat: 47.413135,
@@ -42,6 +42,7 @@ class GoogleMap extends React.Component {
       scrollwheel: false,
       disableDefaultUI: true
     })
+    return googleMap
   }
 
   render () {

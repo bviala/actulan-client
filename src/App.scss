@@ -26,11 +26,8 @@ body {
   flex-direction: column;
 }
 
-.navbar {
-  border-bottom: 2px solid $primary;
-}
 .navbar-brand {
-  margin-left: 1em;
+  padding-left: 1em;
 }
 
 main {
