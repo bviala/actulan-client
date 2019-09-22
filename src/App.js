@@ -8,6 +8,11 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = { events: [] }
+    this.onHoverChange = this.onHoverChange.bind(this)
+  }
+
+  onHoverChange (id) {
+    console.log(id)
   }
 
   componentDidMount () {
@@ -29,7 +34,7 @@ class App extends React.Component {
         <main>
           <GoogleMap events={this.state.events}/>
           <div className="event-list-container section">
-            <EventList events={this.state.events}/>
+            <EventList events={this.state.events} onHoverChange={this.onHoverChange}/>
           </div>
         </main>
       </div>

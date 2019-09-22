@@ -62,10 +62,12 @@ class GoogleMap extends React.Component {
     return markers
   }
 
-  componentDidUpdate () {
+  componentDidUpdate (prevProps) {
     // if map is not ready, markers will be added in its load callback
     if (window.google) {
-      this.addMarkers()
+      if (prevProps.events !== this.props.events) {
+        this.addMarkers()
+      }
     }
   }
 
