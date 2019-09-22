@@ -23,6 +23,7 @@ class GoogleMap extends React.Component {
 
     googleScript.addEventListener('load', () => {
       this.googleMap = this.createGoogleMap()
+      this.addMarkers()
     })
   }
 
@@ -43,6 +44,29 @@ class GoogleMap extends React.Component {
       disableDefaultUI: true
     })
     return googleMap
+  }
+
+  addMarkers () {
+    console.log(`Adding ${this.props.events.length} events to the map`)
+    const markers = []
+    this.props.events.forEach(event => {
+      if (event.location && event.location.lat && event.location.lng) {
+        const latLng = new window.google.maps.LatLng(event.location.lat, event.location.lng)
+        const marker = new window.google.maps.Marker({
+          position: latLng,
+          map: this.googleMap
+        })
+        markers.push(marker)
+      }
+    })
+    return markers
+  }
+
+  componentDidUpdate () {
+    // if map is not ready, markers will be added in its load callback
+    if (window.google) {
+      this.addMarkers()
+    }
   }
 
   render () {
