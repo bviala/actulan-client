@@ -10,6 +10,14 @@ const FRANCE_BOUNDS = {
   east: 10
 }
 
+const highlightedIcon = {
+  url: 'https://cdn.pixabay.com/photo/2014/04/03/10/03/google-309739_640.png',
+  scaledSize: {
+    width: 27,
+    height: 43
+  }
+}
+
 class GoogleMap extends React.Component {
   constructor (props) {
     super(props)
@@ -72,19 +80,17 @@ class GoogleMap extends React.Component {
 
   componentDidUpdate (prevProps) {
     // if map is not ready, markers will be added in its load callback
-    if (window.google) {
-      if (prevProps.events !== this.props.events) {
-        this.addMarkers()
-      }
-      if (prevProps.hoveredEvent !== this.props.hoveredEvent) {
-        this.state.eventMarkers.forEach(eventMarker => {
-          if (eventMarker.eventId === this.props.hoveredEvent) {
-            eventMarker.marker.setAnimation(window.google.maps.Animation.BOUNCE)
-          } else {
-            eventMarker.marker.setAnimation(null)
-          }
-        })
-      }
+    if (window.google && prevProps.events !== this.props.events) {
+      this.addMarkers()
+    }
+    if (prevProps.hoveredEvent !== this.props.hoveredEvent) {
+      this.state.eventMarkers.forEach(eventMarker => {
+        if (eventMarker.eventId === this.props.hoveredEvent) {
+          eventMarker.marker.setIcon(highlightedIcon)
+        } else {
+          eventMarker.marker.setIcon(null)
+        }
+      })
     }
   }
 
