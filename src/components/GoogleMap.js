@@ -1,5 +1,6 @@
 import React from 'react'
 import './GoogleMap.scss'
+import BLUE_MARKER from '../blue-marker.png'
 
 const GOOGLE_MAP_API_KEY = 'AIzaSyBap_M_mBL76MdmgdouS9l3vBwMxEkXbcs'
 
@@ -11,7 +12,7 @@ const FRANCE_BOUNDS = {
 }
 
 const highlightedIcon = {
-  url: 'https://cdn.pixabay.com/photo/2014/04/03/10/03/google-309739_640.png',
+  url: BLUE_MARKER,
   scaledSize: {
     width: 27,
     height: 43
