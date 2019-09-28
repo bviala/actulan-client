@@ -1,8 +1,7 @@
 import React from 'react'
 import './GoogleMap.scss'
 import BLUE_MARKER from '../blue-marker.png'
-
-const GOOGLE_MAP_API_KEY = 'AIzaSyBap_M_mBL76MdmgdouS9l3vBwMxEkXbcs'
+import { GOOGLE_MAP_API_KEY } from '../apiKeys'
 
 const FRANCE_BOUNDS = {
   north: 52,
