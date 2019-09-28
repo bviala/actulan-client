@@ -3,13 +3,6 @@ import './GoogleMap.scss'
 import BLUE_MARKER from '../blue-marker.png'
 import { GOOGLE_MAP_API_KEY } from '../apiKeys'
 
-const FRANCE_BOUNDS = {
-  north: 52,
-  south: 42,
-  west: -5,
-  east: 10
-}
-
 const highlightedIcon = {
   url: BLUE_MARKER,
   scaledSize: {
@@ -46,13 +39,9 @@ class GoogleMap extends React.Component {
         lat: 47.413135,
         lng: 2.856981
       },
-      restriction: {
-        latLngBounds: FRANCE_BOUNDS,
-        strictBounds: false
-      },
-      disableDoubleClickZoom: true,
-      scrollwheel: false,
-      disableDefaultUI: true
+      gestureHandling: 'none',
+      disableDefaultUI: true,
+      draggableCursor: 'default'
     })
     return googleMap
   }
