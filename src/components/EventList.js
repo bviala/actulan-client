@@ -25,7 +25,7 @@ class EventList extends React.Component {
           className={`
             columns
             event
-            is-size-4
+            is-size-5
             ${this.props.hoveredMarker === event.id ? 'highlighted' : null}
           `}
           onMouseEnter={() => this.onMouseEnter(event.id)}

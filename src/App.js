@@ -40,7 +40,7 @@ class App extends React.Component {
     return (
       <div className="root">
         <header className="navbar is-primary">
-          <h1 className='navbar-brand is-size-3'>
+          <h1 className='navbar-brand is-size-4'>
             Actu-Lan
           </h1>
         </header>
