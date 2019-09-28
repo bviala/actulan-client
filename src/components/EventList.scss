@@ -3,3 +3,14 @@
 .event {
   border-bottom: 1px solid $primary;
 }
+
+.event:hover {
+  cursor: pointer;
+  background-color: $primary;
+  color: white;
+}
+
+.highlighted {
+  background-color: $primary;
+  color: white;
+}

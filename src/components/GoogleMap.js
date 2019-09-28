@@ -31,42 +31,6 @@ class GoogleMap extends React.Component {
     })
   }
 
-  createGoogleMap () {
-    // eslint-disable-next-line no-new
-    const googleMap = new window.google.maps.Map(this.googleMapRef.current, {
-      zoom: 6,
-      center: {
-        lat: 47.413135,
-        lng: 2.856981
-      },
-      gestureHandling: 'none',
-      disableDefaultUI: true,
-      draggableCursor: 'default'
-    })
-    return googleMap
-  }
-
-  addMarkers () {
-    console.log(`Adding ${this.props.events.length} events to the map`)
-    const eventMarkers = []
-    this.props.events.forEach(event => {
-      if (event.location && event.location.lat && event.location.lng) {
-        const latLng = new window.google.maps.LatLng(event.location.lat, event.location.lng)
-        const marker = new window.google.maps.Marker({
-          position: latLng,
-          map: this.googleMap
-        })
-        eventMarkers.push({
-          eventId: event.id,
-          marker: marker
-        })
-      }
-    })
-    this.setState({
-      eventMarkers
-    })
-  }
-
   componentDidUpdate (prevProps) {
     // if map is not ready, markers will be added in its load callback
     if (window.google && prevProps.events !== this.props.events) {
@@ -87,6 +51,61 @@ class GoogleMap extends React.Component {
     return (
       <div className="map-container" ref={this.googleMapRef}/>
     )
+  }
+
+  createGoogleMap () {
+    // eslint-disable-next-line no-new
+    const googleMap = new window.google.maps.Map(this.googleMapRef.current, {
+      zoom: 6,
+      center: {
+        lat: 47.413135,
+        lng: 2.856981
+      },
+      gestureHandling: 'none',
+      disableDefaultUI: true,
+      draggableCursor: 'default'
+    })
+    return googleMap
+  }
+
+  addMarkers () {
+    const eventMarkers = []
+    this.props.events.forEach(event => {
+      if (event.location && event.location.lat && event.location.lng) {
+        const latLng = new window.google.maps.LatLng(event.location.lat, event.location.lng)
+        const marker = new window.google.maps.Marker({
+          position: latLng,
+          map: this.googleMap
+        })
+        const eventMarker = {
+          eventId: event.id,
+          marker: marker
+        }
+        marker.addListener('click', () => {
+          console.log('marker click')
+        })
+        marker.addListener('mouseover', () => {
+          this.onMarkerMouseOver(eventMarker)
+        })
+        marker.addListener('mouseout', () => {
+          this.onMarkerMouseOut(eventMarker)
+        })
+        eventMarkers.push(eventMarker)
+      }
+    })
+    this.setState({
+      eventMarkers
+    })
+  }
+
+  onMarkerMouseOver (eventMarker) {
+    eventMarker.marker.setIcon(highlightedIcon)
+    this.props.onHoverChange(eventMarker.eventId)
+  }
+
+  onMarkerMouseOut (eventMarker) {
+    eventMarker.marker.setIcon(null)
+    this.props.onHoverChange(null)
   }
 }
 

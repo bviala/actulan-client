@@ -9,14 +9,22 @@ class App extends React.Component {
     super(props)
     this.state = {
       events: [],
-      hoveredEvent: null
+      hoveredEvent: null,
+      hoveredMarker: null
     }
-    this.onHoverChange = this.onHoverChange.bind(this)
+    this.onEventHoverChange = this.onEventHoverChange.bind(this)
+    this.onMarkerHoverChange = this.onMarkerHoverChange.bind(this)
   }
 
-  onHoverChange (id) {
+  onEventHoverChange (id) {
     this.setState({
       hoveredEvent: id
+    })
+  }
+
+  onMarkerHoverChange (id) {
+    this.setState({
+      hoveredMarker: id
     })
   }
 
@@ -39,11 +47,13 @@ class App extends React.Component {
         <main>
           <GoogleMap
             events={this.state.events}
-            hoveredEvent={this.state.hoveredEvent}/>
+            hoveredEvent={this.state.hoveredEvent}
+            onHoverChange={this.onMarkerHoverChange}/>
           <div className="event-list-container section">
             <EventList
               events={this.state.events}
-              onHoverChange={this.onHoverChange}/>
+              hoveredMarker={this.state.hoveredMarker}
+              onHoverChange={this.onEventHoverChange}/>
           </div>
         </main>
       </div>

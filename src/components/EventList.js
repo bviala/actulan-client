@@ -22,7 +22,12 @@ class EventList extends React.Component {
       this.props.events.map(event => (
         <div
           key={event.id}
-          className="columns event is-size-4"
+          className={`
+            columns
+            event
+            is-size-4
+            ${this.props.hoveredMarker === event.id ? 'highlighted' : null}
+          `}
           onMouseEnter={() => this.onMouseEnter(event.id)}
           onMouseLeave={this.onMouseLeave}>
           <span className="column is-2">{event.date}</span>
