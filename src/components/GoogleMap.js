@@ -49,7 +49,7 @@ class GoogleMap extends React.Component {
 
   render () {
     return (
-      <div className="map-container" ref={this.googleMapRef}/>
+      <div className="map-container is-hidden-touch" ref={this.googleMapRef}/>
     )
   }
 

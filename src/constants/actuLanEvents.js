@@ -2,7 +2,7 @@ export default [
   {
     id: 1,
     date: '20/09',
-    name: 'super lan',
+    name: 'MEXILAN party',
     location: {
       lat: 48.837020,
       lng: 2.404534
@@ -12,7 +12,7 @@ export default [
   {
     id: 2,
     date: '12/10',
-    name: 'mega lan',
+    name: 'Game Arena #03',
     location: {
       lat: 45.754520,
       lng: 4.857480
@@ -22,7 +22,7 @@ export default [
   {
     id: 3,
     date: '30/10',
-    name: 'giga lan',
+    name: 'LANOWEEN ARENA 2019',
     location: {
       lat: 47.210064,
       lng: -1.542073

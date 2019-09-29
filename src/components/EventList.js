@@ -27,6 +27,7 @@ class EventList extends React.Component {
           key={event.id}
           className={`
             columns
+            is-mobile
             event
             is-size-5
             ${this.props.hoveredMarker === event.id ? 'highlighted' : null}
