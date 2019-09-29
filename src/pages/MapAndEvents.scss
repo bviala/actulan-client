@@ -1,0 +1,9 @@
+.event-list-container {
+  flex: 1;
+  overflow: scroll;
+  padding: 3em;
+}
+.map-and-events {
+  flex-grow: 1;  
+  display: flex;
+}
