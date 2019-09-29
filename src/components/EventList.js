@@ -5,8 +5,11 @@ class EventList extends React.Component {
   constructor (props) {
     super(props)
 
-    this.onMouseEnter = this.onMouseEnter.bind(this)
     this.onMouseLeave = this.onMouseLeave.bind(this)
+  }
+
+  onClick (id) {
+    this.props.history.push(`/event/${id}`)
   }
 
   onMouseEnter (id) {
@@ -28,6 +31,7 @@ class EventList extends React.Component {
             is-size-5
             ${this.props.hoveredMarker === event.id ? 'highlighted' : null}
           `}
+          onClick={() => this.onClick(event.id)}
           onMouseEnter={() => this.onMouseEnter(event.id)}
           onMouseLeave={this.onMouseLeave}>
           <span className="column is-2">{event.date}</span>

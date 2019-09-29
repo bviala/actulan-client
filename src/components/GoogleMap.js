@@ -82,7 +82,7 @@ class GoogleMap extends React.Component {
           marker: marker
         }
         marker.addListener('click', () => {
-          console.log('marker click')
+          this.props.history.push(`event/${event.id}`)
         })
         marker.addListener('mouseover', () => {
           this.onMarkerMouseOver(eventMarker)

@@ -42,12 +42,14 @@ class MapAndEvents extends React.Component {
         <GoogleMap
           events={this.state.events}
           hoveredEvent={this.state.hoveredEvent}
-          onHoverChange={this.onMarkerHoverChange}/>
-        <div className="event-list-container section">
+          onHoverChange={this.onMarkerHoverChange}
+          history={this.props.history}/>
+        <div className="event-list-container">
           <EventList
             events={this.state.events}
             hoveredMarker={this.state.hoveredMarker}
-            onHoverChange={this.onEventHoverChange}/>
+            onHoverChange={this.onEventHoverChange}
+            history={this.props.history}/>
         </div>
       </div>
     )
