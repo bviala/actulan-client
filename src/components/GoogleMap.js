@@ -15,26 +15,28 @@ class GoogleMap extends React.Component {
   constructor (props) {
     super(props)
     this.googleMapRef = React.createRef()
-    this.state = {
-      eventMarkers: []
-    }
   }
 
   componentDidMount () {
-    const googleScript = document.createElement('script')
-    googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places`
-    window.document.body.appendChild(googleScript)
+    if (window.google && window.google.maps) {
+      this.setGoogleMap()
+      this.setMarkers()
+    } else {
+      const googleScript = document.createElement('script')
+      googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}`
+      window.document.body.appendChild(googleScript)
 
-    googleScript.addEventListener('load', () => {
-      this.googleMap = this.createGoogleMap()
-      this.addMarkers()
-    })
+      googleScript.addEventListener('load', () => {
+        this.setGoogleMap()
+        this.setMarkers()
+      })
+    }
   }
 
   componentDidUpdate (prevProps) {
     // if map is not ready, markers will be added in its load callback
     if (window.google && prevProps.events !== this.props.events) {
-      this.addMarkers()
+      this.setMarkers()
     }
     if (prevProps.hoveredEvent !== this.props.hoveredEvent) {
       this.state.eventMarkers.forEach(eventMarker => {
@@ -53,7 +55,7 @@ class GoogleMap extends React.Component {
     )
   }
 
-  createGoogleMap () {
+  setGoogleMap () {
     // eslint-disable-next-line no-new
     const googleMap = new window.google.maps.Map(this.googleMapRef.current, {
       zoom: 6,
@@ -65,17 +67,17 @@ class GoogleMap extends React.Component {
       disableDefaultUI: true,
       draggableCursor: 'default'
     })
-    return googleMap
+    this.setState({ googleMap })
   }
 
-  addMarkers () {
+  setMarkers () {
     const eventMarkers = []
     this.props.events.forEach(event => {
       if (event.location && event.location.lat && event.location.lng) {
         const latLng = new window.google.maps.LatLng(event.location.lat, event.location.lng)
         const marker = new window.google.maps.Marker({
           position: latLng,
-          map: this.googleMap
+          map: this.state.googleMap
         })
         const eventMarker = {
           eventId: event.id,
