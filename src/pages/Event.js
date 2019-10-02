@@ -34,7 +34,7 @@ class Event extends React.Component {
               </h2> */}
             </div>
           </section>
-          <div className="columns">
+          <div className="columns columns-fix">
             <div className="column is-hidden-touch is-one-quarter"/>
             <div className="column is-primary is-size-4">
               <div className="event-info">

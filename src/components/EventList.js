@@ -22,23 +22,25 @@ class EventList extends React.Component {
 
   render () {
     return (
-      this.props.events.map(event => (
-        <div
-          key={event.id}
-          className={`
-            columns
-            is-mobile
-            event
-            is-size-5
-            ${this.props.hoveredMarker === event.id ? 'highlighted' : null}
-          `}
-          onClick={() => this.onClick(event.id)}
-          onMouseEnter={() => this.onMouseEnter(event.id)}
-          onMouseLeave={this.onMouseLeave}>
-          <span className="column is-2">{event.date}</span>
-          <span className="column has-text-weight-semibold">{event.name}</span>
-        </div>
-      ))
+      <div className="events">
+        {this.props.events.map(event => (
+          <div
+            key={event.id}
+            className={`
+              columns
+              is-mobile
+              event
+              is-size-5
+              ${this.props.hoveredMarker === event.id ? 'highlighted' : null}
+            `}
+            onClick={() => this.onClick(event.id)}
+            onMouseEnter={() => this.onMouseEnter(event.id)}
+            onMouseLeave={this.onMouseLeave}>
+            <span className="column is-2">{event.date}</span>
+            <span className="column has-text-weight-semibold">{event.name}</span>
+          </div>
+        ))}
+      </div>
     )
   }
 }

@@ -44,7 +44,7 @@ class MapAndEvents extends React.Component {
           hoveredEvent={this.state.hoveredEvent}
           onHoverChange={this.onMarkerHoverChange}
           history={this.props.history}/>
-        <div className="event-list-container">
+        <div className="right">
           <EventList
             events={this.state.events}
             hoveredMarker={this.state.hoveredMarker}
