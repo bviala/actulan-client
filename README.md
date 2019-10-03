@@ -1,7 +1,7 @@
 ## Before running the project
-*  Go to https://console.cloud.google.com/ and get an API key`  
+*  Go to https://console.cloud.google.com/ and get an API key  
 *  Create file `apiKeys.js` in `src` folder  
-*  Add `export const GOOGLE_MAP_API_KEY='XXXXXXX'` and save.
+*  Add `export const GOOGLE_MAP_API_KEY='XXXXXXX'` and save.  
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
