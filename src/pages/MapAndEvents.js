@@ -31,7 +31,6 @@ class MapAndEvents extends React.Component {
 
   componentDidMount () {
     getEvents().then(events => {
-      console.log(events)
       this.setState({
         events
       })

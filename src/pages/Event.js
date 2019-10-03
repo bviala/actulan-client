@@ -1,5 +1,8 @@
 import React from 'react'
-import { getEvent } from '../api/eventsStub'
+import { formatFR } from '../mixins/dateUtils'
+import { parseISO } from 'date-fns'
+// import { getEvent } from '../api/eventsStub'
+import { getEvent } from '../api/events'
 import './Event.scss'
 
 class Event extends React.Component {
@@ -29,30 +32,29 @@ class Event extends React.Component {
               <h1 className="title">
                 {this.state.event.name}
               </h1>
-              {/* <h2 class="subtitle">
-                Hero subtitle
-              </h2> */}
             </div>
           </section>
           <div className="columns columns-fix">
             <div className="column is-hidden-touch is-one-quarter"/>
             <div className="column is-primary is-size-4">
               <div className="event-info">
-                Du 29 septembre 2019 à 19h
+                {formatFR(parseISO(this.state.event.startDate), "'Du' d MMMM yyyy 'à' H'h'")}
                 <br></br>
-                Au 30 septembre 2019 à 3h
+                {formatFR(parseISO(this.state.event.endDate), "'Au' d MMMM yyyy 'à' H'h'")}
               </div>
               <div className="event-info">
-                8 rue de la Véga
+                {this.state.event.address}
                 <br></br>
-                75012 Paris
+                {this.state.event.zipCode} {this.state.event.city}
               </div>
               <div className="event-info">
-                100 places - 10€
+                {this.state.event.slotPrice}€
+                <br></br>
+                {this.state.event.slotNumber} places
               </div>
               <div className="event-info">
-                <a href="valenciennes-game-arena.com">
-                  valenciennes-game-arena.com
+                <a href={this.state.event.website}>
+                  {this.state.event.website}
                 </a>
               </div>
             </div>
