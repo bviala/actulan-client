@@ -8,6 +8,12 @@
   border-radius: 2px;
 }
 
+.event-name {
+  display: flex;
+  align-items: center;
+  padding-left: 1em;
+}
+
 .event:hover {
   cursor: pointer;
   background-color: $primary;

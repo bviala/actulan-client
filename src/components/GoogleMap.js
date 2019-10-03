@@ -73,8 +73,8 @@ class GoogleMap extends React.Component {
   setMarkers () {
     const eventMarkers = []
     this.props.events.forEach(event => {
-      if (event.location && event.location.lat && event.location.lng) {
-        const latLng = new window.google.maps.LatLng(event.location.lat, event.location.lng)
+      if (event.latitude && event.longitude) {
+        const latLng = new window.google.maps.LatLng(event.latitude, event.longitude)
         const marker = new window.google.maps.Marker({
           position: latLng,
           map: this.state.googleMap

@@ -1,4 +1,7 @@
 import React from 'react'
+import { parseISO, getDate } from 'date-fns'
+import { formatFR } from '../mixins/dateUtils'
+
 import './EventList.scss'
 
 class EventList extends React.Component {
@@ -36,8 +39,13 @@ class EventList extends React.Component {
             onClick={() => this.onClick(event.id)}
             onMouseEnter={() => this.onMouseEnter(event.id)}
             onMouseLeave={this.onMouseLeave}>
-            <span className="column is-2">{event.date}</span>
-            <span className="column has-text-weight-semibold">{event.name}</span>
+            <div className="column is-3 has-text-right">
+              <div>{getDate(parseISO(event.startDate))}</div>
+              <div>{formatFR(parseISO(event.startDate), 'MMMM')}</div>
+            </div>
+            <div className="column has-text-weight-light is-size-4 event-name">
+              <span>{event.name}</span>
+            </div>
           </div>
         ))}
       </div>

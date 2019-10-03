@@ -1,5 +1,5 @@
 import React from 'react'
-import { getEvent } from '../api/events'
+import { getEvent } from '../api/eventsStub'
 import './Event.scss'
 
 class Event extends React.Component {

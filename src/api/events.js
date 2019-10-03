@@ -1,25 +1,15 @@
-import events from '../constants/actuLanEvents'
-
-const DELAY = 500 // ms
+import axios from 'axios'
+const baseURL = 'http://localhost:1337'
 
 const getEvents = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(events)
-    }, DELAY)
-  })
+  // todo add filter endDate gt now
+  return axios.get(`${baseURL}/events?_sort=startDate:ASC`)
+    .then(res => res.data)
 }
 
-const getEvent = (id) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (id % 2 === 0) {
-        resolve(events[0])
-      } else {
-        reject(new Error('lol'))
-      }
-    }, DELAY)
-  })
+const getEvent = id => {
+  return axios.get(`${baseURL}/events/${id}`)
+    .then(res => res.data)
 }
 
-export { getEvent, getEvents }
+export { getEvents, getEvent }

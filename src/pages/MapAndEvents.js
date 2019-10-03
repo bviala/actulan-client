@@ -2,6 +2,7 @@ import React from 'react'
 import './MapAndEvents.scss'
 import EventList from '../components/EventList'
 import GoogleMap from '../components/GoogleMap'
+// import { getEvents } from '../api/eventsStub'
 import { getEvents } from '../api/events'
 
 class MapAndEvents extends React.Component {
@@ -30,6 +31,7 @@ class MapAndEvents extends React.Component {
 
   componentDidMount () {
     getEvents().then(events => {
+      console.log(events)
       this.setState({
         events
       })
