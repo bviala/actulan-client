@@ -1,7 +1,7 @@
 import React from 'react'
 import { formatFRfromISO } from '../mixins/dateUtils'
-// import { getEvent } from '../api/eventsStub'
-import { getEvent } from '../api/events'
+import { getEvent } from '../api/eventsStub'
+// import { getEvent } from '../api/events'
 import './Event.scss'
 
 class Event extends React.Component {
