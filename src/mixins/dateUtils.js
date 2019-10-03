@@ -1,8 +1,12 @@
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import frLocale from 'date-fns/locale/fr'
 
 const formatFR = (date, formatString) => {
   return format(date, formatString, { locale: frLocale })
 }
 
-export { formatFR }
+const formatFRfromISO = (isoDate, formatString) => {
+  return formatFR(parseISO(isoDate), formatString)
+}
+
+export { formatFR, formatFRfromISO }

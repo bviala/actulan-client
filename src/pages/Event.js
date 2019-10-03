@@ -1,6 +1,5 @@
 import React from 'react'
-import { formatFR } from '../mixins/dateUtils'
-import { parseISO } from 'date-fns'
+import { formatFRfromISO } from '../mixins/dateUtils'
 // import { getEvent } from '../api/eventsStub'
 import { getEvent } from '../api/events'
 import './Event.scss'
@@ -38,9 +37,9 @@ class Event extends React.Component {
             <div className="column is-hidden-touch is-one-quarter"/>
             <div className="column is-primary is-size-4">
               <div className="event-info">
-                {formatFR(parseISO(this.state.event.startDate), "'Du' d MMMM yyyy 'à' H'h'")}
+                {formatFRfromISO(this.state.event.startDate, "'Du' d MMMM yyyy 'à' H'h'")}
                 <br></br>
-                {formatFR(parseISO(this.state.event.endDate), "'Au' d MMMM yyyy 'à' H'h'")}
+                {formatFRfromISO(this.state.event.endDate, "'Au' d MMMM yyyy 'à' H'h'")}
               </div>
               <div className="event-info">
                 {this.state.event.address}
