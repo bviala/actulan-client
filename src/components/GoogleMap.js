@@ -3,6 +3,8 @@ import './GoogleMap.scss'
 import BLUE_MARKER from '../blue-marker.png'
 import { GOOGLE_MAP_API_KEY } from '../apiKeys'
 
+const MARKER_HOVER_DELAY = 30
+
 const highlightedIcon = {
   url: BLUE_MARKER,
   scaledSize: {
@@ -101,13 +103,21 @@ class GoogleMap extends React.Component {
   }
 
   onMarkerMouseOver (eventMarker) {
-    eventMarker.marker.setIcon(highlightedIcon)
-    this.props.onHoverChange(eventMarker.eventId)
+    console.log('in ' + eventMarker.eventId)
+    clearTimeout(eventMarker.markerHoverTimeoutId)
+    eventMarker.markerHoverTimeoutId = setTimeout(() => {
+      eventMarker.marker.setIcon(highlightedIcon)
+      this.props.onHoverChange(eventMarker.eventId)
+    }, MARKER_HOVER_DELAY)
   }
 
   onMarkerMouseOut (eventMarker) {
-    eventMarker.marker.setIcon(null)
-    this.props.onHoverChange(null)
+    console.log('out ' + eventMarker.eventId)
+    clearTimeout(eventMarker.markerHoverTimeoutId)
+    eventMarker.markerHoverTimeoutId = setTimeout(() => {
+      eventMarker.marker.setIcon(null)
+      this.props.onHoverChange(null)
+    }, MARKER_HOVER_DELAY)
   }
 }
 

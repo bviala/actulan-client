@@ -37,7 +37,8 @@ class EventList extends React.Component {
             `}
             onClick={() => this.onClick(event.id)}
             onMouseEnter={() => this.onMouseEnter(event.id)}
-            onMouseLeave={this.onMouseLeave}>
+            onMouseLeave={this.onMouseLeave}
+          >
             <div className="column is-3 has-text-right">
               <div>{formatFRfromISO(event.startDate, 'd')}</div>
               <div>{formatFRfromISO(event.startDate, 'MMMM')}</div>
